@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practical AI, Without the Hype</title>
+<meta name="description" content="AI setup, custom workflows, and coaching for writers, professionals, and small businesses. Method, not hype.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F7F6F2;
+    --ink: #1C1B18;
+    --ink-soft: #4A4842;
+    --gall: #24425F;      /* iron-gall ink blue */
+    --gall-pale: #24425F22;
+    --rule: #D8D5CC;
+    --max: 660px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Work Sans', system-ui, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---- Plumb line: the signature ---- */
+  .plumb {
+    position: relative;
+    width: 1px;
+    height: 72px;
+    margin: 0 auto;
+    background: var(--gall);
+  }
+  .plumb::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--gall);
+  }
+
+  .page {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+  }
+
+  header.masthead {
+    text-align: center;
+    padding-top: 2.75rem;
+  }
+  .wordmark {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8125rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 1.5rem;
+  }
+
+  h1 {
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(2.375rem, 6vw, 3.25rem);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    text-align: center;
+    margin: 1.25rem auto 0;
+    max-width: 14ch;
+  }
+  h1 .accent { color: var(--gall); font-style: italic; }
+
+  .thesis {
+    text-align: center;
+    font-size: 1.1875rem;
+    color: var(--ink-soft);
+    max-width: 42ch;
+    margin: 1.5rem auto 0;
+  }
+
+  .lede {
+    margin-top: 3.5rem;
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 1.3125rem;
+    line-height: 1.55;
+  }
+  .lede p + p { margin-top: 1.1em; }
+  .lede .oneThing { color: var(--gall); }
+
+  section { margin-top: 4rem; }
+
+  h2 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 400;
+    font-size: 0.8125rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gall);
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 2rem;
+  }
+
+  .service + .service {
+    margin-top: 2.25rem;
+    padding-top: 2.25rem;
+    border-top: 1px solid var(--rule);
+  }
+  .service h3 {
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    margin-bottom: 0.5rem;
+  }
+  .service p { color: var(--ink-soft); max-width: 58ch; }
+
+  .why p {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 1.25rem;
+    line-height: 1.55;
+  }
+  .why p + p { margin-top: 1.1em; }
+  .why .credo {
+    font-style: italic;
+    color: var(--gall);
+  }
+
+  .prices { list-style: none; }
+  .prices li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding: 1rem 0;
+  }
+  .prices li + li { border-top: 1px solid var(--rule); }
+  .prices .what { color: var(--ink); }
+  .prices .what small {
+    display: block;
+    color: var(--ink-soft);
+    font-size: 0.9375rem;
+    margin-top: 0.15rem;
+  }
+  .prices .amount {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--gall);
+  }
+
+  .contact { text-align: center; }
+  .contact .name {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  .contact .lines { margin-top: 0.75rem; color: var(--ink-soft); }
+  .contact .lines a {
+    color: var(--gall);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gall-pale);
+    transition: border-color 120ms ease;
+  }
+  .contact .lines a:hover { border-bottom-color: var(--gall); }
+  .contact a:focus-visible,
+  .cta:focus-visible {
+    outline: 2px solid var(--gall);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  .contact .divider { margin: 0 0.6em; color: var(--rule); }
+
+  .cta {
+    display: inline-block;
+    margin-top: 1.75rem;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--paper);
+    background: var(--gall);
+    padding: 0.8rem 1.9rem;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: background 120ms ease;
+  }
+  .cta:hover { background: #1B334A; }
+
+  .basedin {
+    margin-top: 1.5rem;
+    font-size: 0.9375rem;
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+
+  footer {
+    margin-top: 5rem;
+    text-align: center;
+  }
+  footer .plumb { height: 44px; }
+  .sig {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8125rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    margin-top: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    .prices li { flex-direction: column; gap: 0.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="plumb" aria-hidden="true"></div>
+
+<div class="page">
+
+  <header class="masthead">
+    <p class="wordmark">[Name] · Applied AI</p>
+    <h1>Practical AI, without <span class="accent">the hype.</span></h1>
+    <p class="thesis">Setup, custom workflows, and coaching for writers, professionals, and small businesses — built to fit how you already work.</p>
+  </header>
+
+  <div class="lede">
+    <p>Most people are stuck in one of two places with AI: overwhelmed by hype, or underwhelmed by results. <span class="oneThing">Both come down to one thing</span> — nobody showed them how to make AI fit <em>their</em> work, <em>their</em> voice, <em>their</em> terms.</p>
+    <p>That's what I do.</p>
+  </div>
+
+  <section aria-labelledby="offer">
+    <h2 id="offer">What I offer</h2>
+
+    <div class="service">
+      <h3>AI setup &amp; custom workflows</h3>
+      <p>I configure your AI tools around your actual work: custom instructions, reusable prompt libraries, and workflows for your recurring tasks. You walk away with a system, not a bag of tricks.</p>
+    </div>
+
+    <div class="service">
+      <h3>One-on-one coaching</h3>
+      <p>For writers and professionals who want to use AI well without losing their voice or their judgment. Practical sessions built around your real projects. No jargon, no magic-trick prompts — method you'll still be using a year from now.</p>
+    </div>
+
+    <div class="service">
+      <h3>Cleanup &amp; documentation</h3>
+      <p>AI-generated content that reads like AI-generated content is costing you trust. I edit, humanize, and restructure it — or write the documentation properly from the start.</p>
+    </div>
+  </section>
+
+  <section class="why" aria-labelledby="whyme">
+    <h2 id="whyme">Why me</h2>
+    <p>I'm a writer and researcher who has spent years working hands-on with AI systems across every major platform — studying how they behave, designing frameworks that keep them consistent and useful, and writing about it publicly. I bring a fiction writer's precision with language and a systems analyst's discipline to a field full of guesswork.</p>
+    <p class="credo">I don't sell hype. I teach method.</p>
+  </section>
+
+  <section aria-labelledby="pricing">
+    <h2 id="pricing">Pricing</h2>
+    <ul class="prices">
+      <li>
+        <span class="what">Starter setup package
+          <small>Custom instructions + prompt library + one-hour walkthrough</small>
+        </span>
+        <span class="amount">$[XXX] flat</span>
+      </li>
+      <li>
+        <span class="what">Coaching sessions
+          <small>Discounted bundles available</small>
+        </span>
+        <span class="amount">$[XX]/hour</span>
+      </li>
+      <li>
+        <span class="what">Cleanup &amp; documentation
+          <small>Scoped to your project</small>
+        </span>
+        <span class="amount">Quoted per project</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="contact" aria-labelledby="touch">
+    <h2 id="touch">Get in touch</h2>
+    <p class="name">[Name]</p>
+    <p class="lines">
+      <a href="https://medium.com/PLACEHOLDER">Read: “Is Something”</a>
+      <span class="divider">·</span>
+      <a href="https://github.com/PLACEHOLDER">Frameworks on GitHub</a>
+    </p>
+    <a class="cta" href="mailto:PLACEHOLDER@email.com">Email me</a>
+    <p class="basedin">Based in Alberta, working with clients anywhere.</p>
+  </section>
+
+  <footer>
+    <div class="plumb" aria-hidden="true"></div>
+    <p class="sig">built with method, not hype</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
